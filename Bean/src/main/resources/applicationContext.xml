@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- <import resource="applicationContext.xml"></import>   导入其他Spring的分文件 -->
+    <!--   xmlns:p="http://www.springframework.org/schema/p"   p命名空间          -->
+
+    <bean id="UserDao" class="com.hu.ioc.UserDaoImpl" init-method="init"  destroy-method="destory"></bean>
+<!--    无参构造-->
+
+
+<!--    <bean id="UserDao" class="com.hu.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+<!--    静态工厂-->
+
+    <!--<bean id="factory" class="com.hu.factory.DynamicFactory" ></bean>
+    <bean id="UserDao" factory-bean="factory" factory-method="getUserDao">
+    </bean>-->
+<!--    实例工厂-->
+
+ <!--   <bean id="Service" class="com.hu.Service.UserServiceImpl">
+        <property name="userDao" ref="UserDao"></property>
+    </bean>-->
+    <!-- set   依赖注入-->
+
+
+    <bean id="Service" class="com.hu.Service.UserServiceImpl" >
+        <constructor-arg name="userDao" ref="UserDao"></constructor-arg>
+    </bean>
+    <!-- constructor-arg构造   依赖注入-->
+
+
+
+<!--    <bean id="Service" class="com.hu.Service.UserServiceImpl" p:userDao-ref="UserDao">
+    </bean>-->
+<!--    p命名空间使用-->
+ </beans>
+
+
+
+<!--
+Spring
+
+<bean>标签
+
+id属性:在容器中Bean实例的唯一标识，不允许重复
+
+class属性:要实例化的Bean的全限定名
+
+scope,属性Bean的作用范围，常用是singleton (默认)和prototype<property>标签，属性注入
+
+name属性:属性名称
+
+value属性，注入的普通属性值
+
+ref属性，注入的对象引用值
+
+<list>标签
+
+<map>标签
+
+<properties>标签
+
+<constructor-arg>标签
+
+<import>标签:导入其他的Spring的分文件
+
+
+
+-->

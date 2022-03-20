@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--   xmlns:p="http://www.springframework.org/schema/p"   p命名空间          -->
+
+    <bean id="UserDao" class="com.hu.ioc.UserDaoImpl" init-method="init"  destroy-method="destory"></bean>
+<!--    无参构造-->
+
+
+<!--    <bean id="UserDao" class="com.hu.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+<!--    静态工厂-->
+
+    <!--<bean id="factory" class="com.hu.factory.DynamicFactory" ></bean>
+    <bean id="UserDao" factory-bean="factory" factory-method="getUserDao">
+    </bean>-->
+<!--    实例工厂-->
+
+ <!--   <bean id="Service" class="com.hu.Service.UserServiceImpl">
+        <property name="userDao" ref="UserDao"></property>
+    </bean>-->
+    <!-- set   依赖注入-->
+
+
+    <bean id="Service" class="com.hu.Service.UserServiceImpl" >
+        <constructor-arg name="userDao" ref="UserDao"></constructor-arg>
+    </bean>
+    <!-- 构造   依赖注入-->
+
+
+
+<!--    <bean id="Service" class="com.hu.Service.UserServiceImpl" p:userDao-ref="UserDao">
+    </bean>-->
+<!--    p命名空间使用-->
+ </beans>
